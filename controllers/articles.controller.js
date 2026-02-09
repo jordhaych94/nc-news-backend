@@ -35,9 +35,22 @@ exports.getAllArticlesById = (request, response) => {
 
 exports.getAllCommentsByArticleId = (request, response) => {
   const { article_id } = request.params;
-  getAllCommentsByArticleIdService(article_id)
-    .then((comments) => {
-      response.status(200).send({ comments });
+  const promises = [
+    getAllCommentsByArticleIdService(article_id),
+    getAllArticlesByIdService(article_id),
+  ];
+  Promise.all(promises)
+    .then((result) => {
+      const comments = result[0];
+      const article = result[1];
+      console.log(article);
+
+      if (article.length === 0) {
+        // if article doesnt exsist, do this
+        return response.status(404).send({ msg: "Article not found!" });
+      } else {
+        return response.status(200).send({ comments });
+      }
     })
     .catch((err) => {
       if (err.code === "22P02") {

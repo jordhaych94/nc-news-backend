@@ -139,7 +139,6 @@ describe("/api/articles/:article_id/comments", () => {
       .get("/api/articles/1/comments")
       .expect(200)
       .then(({ body }) => {
-        console.log(body);
         const { comments } = body;
         comments.forEach((comment) => {
           expect(comment.article_id).toBe(1);
@@ -160,6 +159,24 @@ describe("/api/articles/:article_id/comments", () => {
         expect(comments).toBeSortedBy("created_at", {
           descending: true,
         });
+      });
+  });
+  test("404: return 404 when sorting comments by an invalid article_id.", () => {
+    return request(app)
+      .get("/api/articles/1234/comments")
+      .expect(404)
+      .then(({ body }) => {
+        const { msg } = body;
+        expect(msg).toBe("Article not found!");
+      });
+  });
+  test("400: return bad request when passed in invalid article_id type.", () => {
+    return request(app)
+      .get("/api/articles/banana/comments")
+      .expect(400)
+      .then(({ body }) => {
+        const { msg } = body;
+        expect(msg).toBe("Bad request!");
       });
   });
 });
