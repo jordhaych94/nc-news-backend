@@ -1,0 +1,18 @@
+const {
+  fetchAllArticles,
+  fetchAllArticlesById,
+  fetchAllCommentsByArticleId,
+} = require("../models/articles.model");
+
+// all logic goes here!
+exports.getAllArticles = () => {
+  return fetchAllArticles();
+};
+
+exports.getAllArticlesById = (article_Id) => {
+  return fetchAllArticlesById(article_Id);
+};
+
+exports.getAllCommentsByArticleId = (article_Id) => {
+  return fetchAllCommentsByArticleId(article_Id);
+};

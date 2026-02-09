@@ -95,10 +95,10 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
       return db.query(queryStr);
     })
     .then(({ rows }) => {
-      const articleIdLookup = objectLookUp(rows, "title", "article_id");
+      const articleIdLookup = objectLookUp(rows, "title", "article_id"); // formats data to be i.e {"Living in the shadow of a great man": 1}
       const formatedComments = commentData.map((comment) => {
         return [
-          articleIdLookup[comment.article_title],
+          articleIdLookup[comment.article_title], // swaps every article_title for article_id - table askes for article_id but data has article_title
           comment.body,
           comment.votes,
           comment.author,
