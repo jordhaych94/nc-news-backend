@@ -2,6 +2,7 @@ const {
   getAllArticles: getAllArticlesService,
   getAllArticlesById: getAllArticlesByIdService,
   getAllCommentsByArticleId: getAllCommentsByArticleIdService,
+  postAllCommentsByAtricleId: postAllCommentsByAtricleIdService,
 } = require("../services/articles.service");
 
 // handles the request, responce (http)!
@@ -43,7 +44,6 @@ exports.getAllCommentsByArticleId = (request, response) => {
     .then((result) => {
       const comments = result[0];
       const article = result[1];
-      console.log(article);
 
       if (article.length === 0) {
         // if article doesnt exsist, do this
@@ -57,5 +57,17 @@ exports.getAllCommentsByArticleId = (request, response) => {
         return response.status(400).send({ msg: "Bad request!" });
       }
       return response.status(500).send({ msg: "Server Error" });
+    });
+};
+
+exports.postAllCommentsByAtricleId = (request, response) => {
+  const { article_id } = request.params;
+  const newComment = request.body;
+  postAllCommentsByAtricleIdService(article_id, newComment)
+    .then((comment) => {
+      response.status(201).send({ comment });
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };

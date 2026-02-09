@@ -36,3 +36,19 @@ exports.fetchAllCommentsByArticleId = (article_id) => {
       return rows;
     });
 };
+
+exports.fetchPostAllCommentsByAtricleId = (article_id, newComment) => {
+  const { username, body } = newComment;
+  console.log(username);
+  return db
+    .query(
+      `
+    insert into comments(article_id, author, body) VALUES ($1, $2, $3) RETURNING *
+    `,
+      [article_id, username, body],
+    )
+    .then(({ rows }) => {
+      console.log("rows -->", rows);
+      return rows[0];
+    });
+};
