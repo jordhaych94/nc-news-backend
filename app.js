@@ -8,6 +8,7 @@ const app = express();
 
 //setup!
 app.use(express.json());
+app.use(express.static('public'))
 
 // linking router (valid endpoints)
 app.use("/api/topics", topicsRouter);

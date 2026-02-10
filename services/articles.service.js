@@ -3,6 +3,7 @@ const {
   fetchAllArticlesById,
   fetchAllCommentsByArticleId,
   fetchPostAllCommentsByAtricleId,
+  fetchPatchArticleById,
 } = require("../models/articles.model");
 
 // all logic goes here!
@@ -18,6 +19,10 @@ exports.getAllCommentsByArticleId = (article_Id) => {
   return fetchAllCommentsByArticleId(article_Id);
 };
 
-exports.postAllCommentsByAtricleId = (article_Id, newComment) => {
+exports.postAllCommentsByArticleId = (article_Id, newComment) => {
   return fetchPostAllCommentsByAtricleId(article_Id, newComment);
+};
+
+exports.patchArticleById = (article_Id, inc_votes) => {
+  return fetchPatchArticleById(article_Id, inc_votes);
 };

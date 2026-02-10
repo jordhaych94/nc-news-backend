@@ -1,8 +1,10 @@
+const articles = require("../db/data/test-data/articles");
 const {
   getAllArticles: getAllArticlesService,
   getAllArticlesById: getAllArticlesByIdService,
   getAllCommentsByArticleId: getAllCommentsByArticleIdService,
-  postAllCommentsByAtricleId: postAllCommentsByAtricleIdService,
+  postAllCommentsByArticleId: postAllCommentsByArticleIdService,
+  patchArticleById: patchArticleByIdService,
 } = require("../services/articles.service");
 
 // handles the request, responce (http)!
@@ -60,14 +62,29 @@ exports.getAllCommentsByArticleId = (request, response) => {
     });
 };
 
-exports.postAllCommentsByAtricleId = (request, response) => {
+exports.postAllCommentsByArticleId = (request, response) => {
   const { article_id } = request.params;
   const newComment = request.body;
-  postAllCommentsByAtricleIdService(article_id, newComment)
+  postAllCommentsByArticleIdService(article_id, newComment)
     .then((comment) => {
       response.status(201).send({ comment });
     })
     .catch((err) => {
       console.log(err);
     });
+};
+
+exports.patchArticleById = (request, response) => {
+  const { article_id } = request.params;
+  const { inc_votes } = request.body;
+  const newVote = request.body;
+  console.log(newVote);
+  patchArticleByIdService(article_id, inc_votes).then((articles) => {
+    if (articles.length === 0) {
+      // if article doesnt exsist, do this
+      return response.status(404).send({ msg: "Article not found!" });
+    } else {
+      return response.status(200).send({ article: articles[0] });
+    }
+  });
 };

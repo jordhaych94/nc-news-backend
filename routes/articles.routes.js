@@ -3,7 +3,8 @@ const {
   getAllArticles,
   getAllArticlesById,
   getAllCommentsByArticleId,
-  postAllCommentsByAtricleId,
+  postAllCommentsByArticleId,
+  patchArticleById,
 } = require("../controllers/articles.controller");
 
 const router = express.Router();
@@ -12,6 +13,7 @@ const router = express.Router();
 router.get("/", getAllArticles); // GET '/api/articles'
 router.get("/:article_id", getAllArticlesById);
 router.get("/:article_id/comments", getAllCommentsByArticleId);
-router.post("/:article_id/comments", postAllCommentsByAtricleId);
+router.post("/:article_id/comments", postAllCommentsByArticleId);
+router.patch("/:article_id", patchArticleById);
 
 module.exports = router;

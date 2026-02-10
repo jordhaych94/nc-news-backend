@@ -24,31 +24,45 @@ exports.fetchAllArticlesById = (article_id) => {
     });
 };
 
-exports.fetchAllCommentsByArticleId = (article_id) => {
+exports.fetchAllCommentsByArticleId = (article_Id) => {
   return db
     .query(
       `SELECT * FROM comments 
        WHERE article_id = $1 
        ORDER BY created_at DESC;`,
-      [article_id],
+      [article_Id],
     )
     .then(({ rows }) => {
       return rows;
     });
 };
 
-exports.fetchPostAllCommentsByAtricleId = (article_id, newComment) => {
+exports.fetchPostAllCommentsByAtricleId = (article_Id, newComment) => {
   const { username, body } = newComment;
-  console.log(username);
   return db
     .query(
       `
-    insert into comments(article_id, author, body) VALUES ($1, $2, $3) RETURNING *
+    insert into comments(article_id, author, body) 
+    VALUES ($1, $2, $3) RETURNING *
     `,
-      [article_id, username, body],
+      [article_Id, username, body],
     )
     .then(({ rows }) => {
-      console.log("rows -->", rows);
       return rows[0];
+    });
+};
+
+exports.fetchPatchArticleById = (article_Id, inc_votes) => {
+  return db
+    .query(
+      `
+    UPDATE articles 
+    SET votes = votes +$1
+    WHERE article_id = $2
+    RETURNING *;`,
+      [inc_votes, article_Id],
+    )
+    .then(({ rows }) => {
+      return rows;
     });
 };

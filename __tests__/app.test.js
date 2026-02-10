@@ -202,6 +202,31 @@ describe("POST METHODS", () => {
           expect(comment.body).toBe(newComment.body);
         });
     });
-    test("", () => {});
+    // test("", () => {});
+    // test("", () => {});
+    // test("", () => {});
+    // test("", () => {});
+    // test("", () => {});
+    // test("", () => {});
+    // test("", () => {});
+    // test("", () => {});
+    //  should be about 8 error handling cases to test for !!!!!!!!!! TO-DO
+  });
+});
+
+describe("PATCH METHODS", () => {
+  describe("/api/articles/:article_id", () => {
+    test("200: updates an article by updating votes and return updated article. ", () => {
+      const newVotes = { inc_votes: 1 };
+      return request(app)
+        .patch("/api/articles/4")
+        .send(newVotes)
+        .expect(200)
+        .then(({ body }) => {
+          const { article } = body;
+          expect(article.article_id).toBe(4);
+          expect(article.votes).toBe(1);
+        });
+    });
   });
 });
