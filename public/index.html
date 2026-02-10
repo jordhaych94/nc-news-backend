@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NC News API</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <header>
@@ -14,17 +18,67 @@
         topics, and social interactions.
       </p>
       <nav class="nav-bar">
-        <a href="#topics">Topics</a>
-        <a href="#articles">Articles</a>
-        <a href="#users">Users</a>
-        <a href="#comments">Comments</a>
+        <div class="dropdown">
+          <button class="dropbtn"><i class="fa fa-list-alt" aria-hidden="true"></i>
+            Topics
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#topics">GET</a>
+            <a href="">POST</a>
+            <a href="">PUT</a>
+            <a href="">PATCH</a>
+            <a href="">DELETE</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn"><i class="fa fa-newspaper-o" aria-hidden="true"></i>
+            Articles
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#articles">GET</a>
+            <a href="">POST</a>
+            <a href="">PUT</a>
+            <a href="">PATCH</a>
+            <a href="">DELETE</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            Users
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#users">GET</a>
+            <a href="">POST</a>
+            <a href="">PUT</a>
+            <a href="">PATCH</a>
+            <a href="">DELETE</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">
+            <i class="fa fa-commenting" aria-hidden="true"></i>
+            comments
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#comments">GET</a>
+            <a href="">POST</a>
+            <a href="">PUT</a>
+            <a href="">PATCH</a>
+            <a href="">DELETE</a><i class="fa fa-users" aria-hidden="true"></i>
+          </div>
+        </div>
       </nav>
     </header>
 
     <main>
       <h2>**Available Endpoints:**</h2>
       <ul>
-        <li id='topics' class="endpoint-card">
+        <li id="topics" class="endpoint-card">
           <h3>GET /api/topics</h3>
           <p>Retrieve a list of all topics.</p>
 
@@ -50,7 +104,8 @@
             </code>
           </pre>
         </li>
-        <li id='articles' class="endpoint-card">
+
+        <li id="articles" class="endpoint-card">
           <h3>GET /api/articles</h3>
           <p>Retrieve a list of all articles.</p>
 
@@ -83,6 +138,7 @@
            </code>
           </pre>
         </li>
+
         <li class="endpoint-card">
           <h3>GET /api/articles/:article_id</h3>
           <p>Retrieve a list of all articles by id.</p>
@@ -107,7 +163,8 @@
             </code>
           </pre>
         </li>
-        <li id='comments' class="endpoint-card">
+
+        <li class="endpoint-card">
           <h3>GET /api/articles/:article_id/comments</h3>
           <p>Retrieve a list of comments by articles id.</p>
 
@@ -137,7 +194,8 @@
             </code>
           </pre>
         </li>
-        <li id='users' class="endpoint-card">
+
+        <li id="users" class="endpoint-card">
           <h3>GET /api/users</h3>
           <p>Retrieve a list of all users.</p>
 
@@ -169,7 +227,8 @@
             </code>
           </pre>
         </li>
-        <li id='comments' class="endpoint-card">
+
+        <li id="comments" class="endpoint-card">
           <h3>GET /api/comments</h3>
           <p>Retrieve a list of all comments.</p>
 
@@ -199,5 +258,8 @@
         </li>
       </ul>
     </main>
+    <footer>
+      <p>&copy; 2026 Jordan Harrison. All rights reserved.</p>
+    </footer>
   </body>
 </html>
