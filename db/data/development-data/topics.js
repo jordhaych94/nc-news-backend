@@ -1,5 +1,9 @@
 module.exports = [
-  { description: "Code is love, code is life", slug: "coding", img_url: "" },
+  {
+    description: "Code is love, code is life",
+    slug: "coding",
+    img_url: "https://images5.alphacoders.com/430/thumb-1920-430910.png",
+  },
   {
     description: "FOOTIE!",
     slug: "football",
