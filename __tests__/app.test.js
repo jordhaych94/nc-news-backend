@@ -23,7 +23,7 @@ describe("GET METHODS", () => {
           topics.forEach((topic) => {
             expect(typeof topic.slug).toBe("string");
             expect(typeof topic.description).toBe("string");
-            expect(typeof topic.img_url).toBe("undefined");
+            expect(typeof topic.img_url).toBe("string");
           });
         });
     });
