@@ -111,6 +111,7 @@ describe("GET METHODS", () => {
             expect(typeof article.created_at).toBe("string");
             expect(typeof article.votes).toBe("number");
             expect(typeof article.article_img_url).toBe("string");
+            expect(typeof article.comment_count).toBe("number");
           });
         });
     });
@@ -234,9 +235,7 @@ describe("PATCH METHODS", () => {
 describe("DELETE METHODS", () => {
   describe("/api/comments/:comment_id", () => {
     test("204: deletes the given comment by comment id", () => {
-      return request(app)
-        .delete("/api/comments/1")
-        .expect(204);
+      return request(app).delete("/api/comments/1").expect(204);
     });
   });
 });
