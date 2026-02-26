@@ -2,6 +2,7 @@ const express = require("express");
 const topicsRouter = require("./routes/topics.routes");
 const articlesRouter = require("./routes/articles.routes");
 const usersRouter = require("./routes/users.routes");
+const commentsRouter = require('./routes/comments.routes')
 const cors = require("cors");
 
 
@@ -17,6 +18,7 @@ app.use(express.static("public"));
 app.use("/api/topics", topicsRouter);
 app.use("/api/articles", articlesRouter);
 app.use("/api/users", usersRouter);
+app.use('/api/comments', commentsRouter)
 
 //invalid endpoints catch all
 app.all("/*path", (request, response, next) => {

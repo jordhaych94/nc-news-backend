@@ -230,3 +230,13 @@ describe("PATCH METHODS", () => {
     });
   });
 });
+
+describe("DELETE METHODS", () => {
+  describe("/api/comments/:comment_id", () => {
+    test("204: deletes the given comment by comment id", () => {
+      return request(app)
+        .delete("/api/comments/1")
+        .expect(204);
+    });
+  });
+});
